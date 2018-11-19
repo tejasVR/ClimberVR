@@ -651,7 +651,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 11a8ba41-6b75-4da6-a0ec-dbc966e57d45
-  projectName: ClimberVR (2)
+  projectName: ClimberVR
   organizationId: tejas_shroff1235
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
