@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1824226378197898}
   m_LocalRotation: {x: -0, y: -0, z: -0.34201884, w: 0.9396931}
-  m_LocalPosition: {x: -0.191, y: 0.888, z: -0.072}
+  m_LocalPosition: {x: -0.331, y: 0.666, z: -0.072}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 4657109188836046}
@@ -160,10 +160,10 @@ MonoBehaviour:
   hideControllerOnAttach: 0
   handAnimationOnPickup: 0
   setRangeOfMotionOnPickup: -1
-  useHandObjectAttachmentPoint: 1
+  useHandObjectAttachmentPoint: 0
   handFollowTransform: {fileID: 0}
-  handFollowTransformPosition: 1
-  handFollowTransformRotation: 1
+  handFollowTransformPosition: 0
+  handFollowTransformRotation: 0
   highlightOnHover: 1
   hideHighlight: []
 --- !u!136 &136788359204539664

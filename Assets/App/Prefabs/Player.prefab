@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4162875102272426}
   - component: {fileID: 114604164319841336}
   - component: {fileID: 114938659967213478}
+  - component: {fileID: 114628781820875242}
   m_Layer: 26
   m_Name: LeftHand
   m_TagString: Untagged
@@ -134,6 +135,7 @@ GameObject:
   - component: {fileID: 4020421675905376}
   - component: {fileID: 114966496839471864}
   - component: {fileID: 114366026501378490}
+  - component: {fileID: 114521273363824126}
   m_Layer: 26
   m_Name: RightHand
   m_TagString: Untagged
@@ -219,8 +221,8 @@ GameObject:
   - component: {fileID: 114844079441095884}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
-  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Player
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -704,7 +706,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460535866047760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.631}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4115704476681260}
@@ -1186,6 +1188,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114521273363824126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255640277083114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7da4b0082fc5c6469f8c4438572fb4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbAction: {fileID: 11400000, guid: 84fbd0b05df7d5042893a0333a6a3f61, type: 2}
+  hand: {fileID: 0}
+  playerBody: {fileID: 1460535866047760}
 --- !u!114 &114604164319841336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,7 +1237,7 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
+  renderModelPrefab: {fileID: 1000011547835092, guid: 8ade79fed86bbd141926d1cd94c98457,
     type: 2}
   showDebugText: 0
   spewDebugText: 0
@@ -1248,6 +1264,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114628781820875242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1011287482992976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7da4b0082fc5c6469f8c4438572fb4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbAction: {fileID: 11400000, guid: 84fbd0b05df7d5042893a0333a6a3f61, type: 2}
+  hand: {fileID: 0}
+  playerBody: {fileID: 1460535866047760}
 --- !u!114 &114713053873819746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1424,7 +1454,7 @@ MonoBehaviour:
   noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
+  renderModelPrefab: {fileID: 1000012617731570, guid: d07386f0ec952ec409dc7753bcf5746b,
     type: 2}
   showDebugText: 0
   spewDebugText: 0

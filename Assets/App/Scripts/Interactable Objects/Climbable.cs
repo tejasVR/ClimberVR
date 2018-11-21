@@ -12,7 +12,6 @@ using Valve.VR.InteractionSystem;
 
 namespace AperionStudios.ClimberVR
 {
-    [RequireComponent(typeof(Interactable))]
     [RequireComponent(typeof(Rigidbody))]
     public class Climbable : MonoBehaviour
     {
@@ -21,29 +20,34 @@ namespace AperionStudios.ClimberVR
 
         protected void Awake()
         {
-            interactable = GetComponent<Interactable>();
+            //interactable = GetComponent<Interactable>();
         }
 
-        protected virtual void OnAttachedToHand(Hand hand)
-        {
-            Debug.Log("A hand interacted with a climable object");
-        }
+        //protected virtual void OnAttachedToHand(Hand hand)
+        //{
+        //    Debug.Log("A hand interacted with a climable object");
+
+        //    if (interactable.activateActionSetOnAttach != null)
+        //        interactable.activateActionSetOnAttach.ActivatePrimary();
+
+        //    interactable.attachedToHand = hand;
+        //}
 
         protected virtual void OnHandHoverBegin(Hand hand)
         {
-            //Debug.Log("A hand hovers over a with a climable object");
-            if (hand.GetComponent<PlayerClimb>() != null)
+            Debug.Log("A hand begins to hover over a with a climable object");
+            if (hand.GetComponent<ClimbingHand>() != null)
             {               
-                hand.GetComponent<PlayerClimb>().SetCanClimb(true);               
+                hand.GetComponent<ClimbingHand>().SetCanClimb(true);               
             }            
         }
 
         protected virtual void OnHandHoverEnd(Hand hand)
         {
             //Debug.Log("A hand hovers over a with a climable object");
-            if (hand.GetComponent<PlayerClimb>() != null)
+            if (hand.GetComponent<ClimbingHand>() != null)
             {
-                hand.GetComponent<PlayerClimb>().SetCanClimb(false);
+                hand.GetComponent<ClimbingHand>().SetCanClimb(false);
             }
         }
     }
