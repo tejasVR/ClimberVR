@@ -10,45 +10,15 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-namespace AperionStudios.ClimberVR
+namespace AperionStudios
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Climbable : MonoBehaviour
+    public class Climbable : InteractableObject
     {
-        [HideInInspector]
-        public Interactable interactable;
-
-        protected void Awake()
+        public override void HandEnterObject(Hand hand)
         {
-            //interactable = GetComponent<Interactable>();
-        }
-
-        //protected virtual void OnAttachedToHand(Hand hand)
-        //{
-        //    Debug.Log("A hand interacted with a climable object");
-
-        //    if (interactable.activateActionSetOnAttach != null)
-        //        interactable.activateActionSetOnAttach.ActivatePrimary();
-
-        //    interactable.attachedToHand = hand;
-        //}
-
-        protected virtual void OnHandHoverBegin(Hand hand)
-        {
-            Debug.Log("A hand begins to hover over a with a climable object");
-            if (hand.GetComponent<ClimbingHand>() != null)
-            {               
-                hand.GetComponent<ClimbingHand>().SetCanClimb(true);               
-            }            
-        }
-
-        protected virtual void OnHandHoverEnd(Hand hand)
-        {
-            //Debug.Log("A hand hovers over a with a climable object");
-            if (hand.GetComponent<ClimbingHand>() != null)
-            {
-                hand.GetComponent<ClimbingHand>().SetCanClimb(false);
-            }
+            base.HandEnterObject(hand);
+            //print("the player's hand is over a climable object");
         }
     }
 }

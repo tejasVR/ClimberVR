@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AperionStudios.ClimberVR
+namespace AperionStudios
 {
     [RequireComponent(typeof(Rigidbody))]
     public class BodyPhysics : MonoBehaviour

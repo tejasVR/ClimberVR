@@ -5,6 +5,7 @@
       "app_key": "application.generated.unity.climbervr.exe",
       "launch_type": "url",
       "url": "steam://launch/",
+      "action_manifest_path": "D:\\Documents\\VR Development\\2019 Projects\\ClimberVR\\ClimberVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "ClimberVR [Testing]"
