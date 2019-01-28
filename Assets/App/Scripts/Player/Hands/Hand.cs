@@ -23,10 +23,11 @@ namespace AperionStudios
         #endregion
 
         public SteamVR_Input_Sources thisHand;
+        public Transform grabAttachPoint;
        
         private SteamVR_Behaviour_Pose trackedObject;
         private InteractableObject interactingObject;        
-        private Grabbable grabbedObject;        
+        private Grabbable grabbedObject; 
         private Rigidbody rb;
 
         void Start()

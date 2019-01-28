@@ -32,12 +32,19 @@ namespace AperionStudios
             SwitchHands
         }
 
+        public enum GrabType
+        {
+            Free,
+            FixedPoint,            
+        }
+
         [Header("Grabbable Settings")]
         public SecondHandInteraction secondHandInteraction;
+        public GrabType grabType;
+        public Transform grabPoint;
         public bool isGrabbed = false;
 
         private Hand handAttachedTo;
-
 
         public virtual void GrabObject(Hand hand)
         {
@@ -56,9 +63,29 @@ namespace AperionStudios
 
         public void AttachToHand(Hand hand)
         {
-
-
             bool shouldReturn = false;
+
+            switch (grabType)
+            {
+                case GrabType.Free:
+                    transform.parent = hand.transform;
+                    break;
+
+                case GrabType.FixedPoint:
+
+                    if (grabPoint == null)
+                    {
+                        Debug.LogError("grabPoint Transform not defined");
+                        break;
+                    }
+                    else
+                    {
+                        transform.parent = hand.grabAttachPoint.transform;
+                        transform.position = grabPoint.position;
+                        transform.rotation = grabPoint.rotation;
+                    }                
+                    break;
+            }
 
             if (handAttachedTo != null && hand != handAttachedTo)
             {
@@ -82,7 +109,6 @@ namespace AperionStudios
 
             AdjustPhysics(true, false);
 
-            transform.parent = hand.transform;
             handAttachedTo = hand;
 
             isGrabbed = true;
@@ -91,23 +117,16 @@ namespace AperionStudios
 
         public void DetachFromHand(Hand hand)
         {
-
-
             AdjustPhysics(false, true);
 
             transform.parent = null;
             handAttachedTo = null;
 
-
-
             isGrabbed = false;
-
         }
 
         private void SwitchHands(Hand handToSwitchTo)
         {
-
-
             if (handAttachedTo != null)
             {
                 handAttachedTo.DetachObjectFromHand();
