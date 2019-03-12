@@ -102,8 +102,7 @@ GameObject:
   - component: {fileID: 6617501792560727365}
   - component: {fileID: 6617501792560727386}
   - component: {fileID: 6617501792560727387}
-  - component: {fileID: 6617501792560727364}
-  - component: {fileID: 763141637266015444}
+  - component: {fileID: 882398423966539883}
   m_Layer: 0
   m_Name: Throwable Object
   m_TagString: Untagged
@@ -155,7 +154,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6617501792560727364
+--- !u!114 &882398423966539883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,19 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   secondHandInteraction: 1
-  isThrown: 0
+  grabType: 0
+  grabPoint: {fileID: 0}
   isGrabbed: 0
+  isThrown: 0
   isActive: 1
-  velocityMultiplier: 1.15
---- !u!114 &763141637266015444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6617501792560727366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce79d9149395304dacb03399d2d97b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  velocityMultiplier: 1

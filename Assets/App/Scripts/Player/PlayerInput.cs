@@ -41,6 +41,8 @@ namespace AperionStudios
         public SteamVR_Action_Single squeezeAction;
 
         #endregion
+
+        public bool printDebugLogs;
         
 
         void Update()
@@ -52,45 +54,59 @@ namespace AperionStudios
             if (SteamVR_Actions.default_GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabPinchDownCallback?.Invoke();
-                print("Left Grab Pinch Down");
+
+                if (printDebugLogs)
+                    print("Left Grab Pinch Down");
             }
 
             if (SteamVR_Actions.default_GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabPinchUpCallback?.Invoke();
-                print("Left Grab Pinch Up");
+
+                if (printDebugLogs)
+                    print("Left Grab Pinch Up");
             }
 
             if (SteamVR_Actions.default_GrabPinch.GetState(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabPinchPressedCallback?.Invoke();
-                print("Left Grab Pinch Pressed");
+
+                if (printDebugLogs)
+                    print("Left Grab Pinch Pressed");
             }
 
             // Grip
             if (SteamVR_Actions.default_GrabGrip.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabGripDownCallback?.Invoke();
-                print("Left Grab Grip Down");
+
+                if (printDebugLogs)
+                    print("Left Grab Grip Down");
             }
 
             if (SteamVR_Actions.default_GrabGrip.GetStateUp(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabGripUpCallback?.Invoke();
-                print("Left Grab Grip Up");
+
+                if (printDebugLogs)
+                    print("Left Grab Grip Up");
             }
 
             if (SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.LeftHand))
             {
                 LeftGrabGripPressedCallback?.Invoke();
-                print("Left Grab Grip Pressed");
+
+                if (printDebugLogs)
+                    print("Left Grab Grip Pressed");
             }
 
             // Squeeze
             if (SteamVR_Actions.default_Squeeze.GetAxis(SteamVR_Input_Sources.LeftHand) > 0.8F)
             {
                 LeftSqueezedCallback?.Invoke();
-                print("Left Squeezed Pressed");
+
+                if (printDebugLogs)
+                    print("Left Squeezed Pressed");
             }
 
             #endregion
@@ -101,45 +117,59 @@ namespace AperionStudios
             if (SteamVR_Actions.default_GrabPinch.GetStateUp(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabPinchDownCallback?.Invoke();
-                print("Right Grab Pinch Down");
+
+                if (printDebugLogs)
+                    print("Right Grab Pinch Down");
             }
 
             if (SteamVR_Actions.default_GrabPinch.GetStateUp(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabPinchUpCallback?.Invoke();
-                print("Right Grab Pinch Up");
+
+                if (printDebugLogs)
+                    print("Right Grab Pinch Up");
             }
 
             if (SteamVR_Actions.default_GrabPinch.GetState(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabPinchPressedCallback?.Invoke();
-                print("Right Grab Pinch Pressed");
+
+                if (printDebugLogs)
+                    print("Right Grab Pinch Pressed");
             }
 
             // Grip
             if (SteamVR_Actions.default_GrabGrip.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabGripDownCallback?.Invoke();
-                print("Right Grab Grip Down");
+
+                if (printDebugLogs)
+                    print("Right Grab Grip Down");
             }
 
             if (SteamVR_Actions.default_GrabGrip.GetStateUp(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabGripUpCallback?.Invoke();
-                print("Right Grab Grip Up");
+
+                if (printDebugLogs)
+                    print("Right Grab Grip Up");
             }
 
             if (SteamVR_Actions.default_GrabGrip.GetState(SteamVR_Input_Sources.RightHand))
             {
                 RightGrabGripPressedCallback?.Invoke();
-                print("Right Grab Grip Pressed");
+
+                if (printDebugLogs)
+                    print("Right Grab Grip Pressed");
             }
 
             // Squeeze
             if (SteamVR_Actions.default_Squeeze.GetAxis(SteamVR_Input_Sources.RightHand) > 0.8F)
             {
                 LeftSqueezedCallback?.Invoke();
-                print("Right Squeezed Pressed");
+
+                if (printDebugLogs)
+                    print("Right Squeezed Pressed");
             }
 
             #endregion

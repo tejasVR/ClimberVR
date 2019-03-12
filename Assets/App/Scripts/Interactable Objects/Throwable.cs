@@ -41,10 +41,7 @@ namespace AperionStudios
         {
             base.UngrabObject(hand);
 
-            if (CheckIfThrown(hand))
-            {
-                Throw(hand);
-            }
+            Throw(hand);            
         }
 
         private void PickUp()
@@ -55,7 +52,9 @@ namespace AperionStudios
         private void Throw(Hand hand)
         {
             ApplyDetachVelocity(hand);
-            isThrown = true;
+
+            if (CheckIfThrown(hand))
+                isThrown = true;
         }
 
         
@@ -63,6 +62,7 @@ namespace AperionStudios
         {
             if (hand.GetHandVelocity().magnitude * velocityMultiplier < throwVelocityThreshold)
             {
+                Debug.Log("Object was not thrown becuase throw velocity was " + hand.GetHandVelocity().magnitude * velocityMultiplier);
                 return false;
             }
 

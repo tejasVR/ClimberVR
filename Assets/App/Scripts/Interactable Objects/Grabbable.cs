@@ -44,6 +44,8 @@ namespace AperionStudios
         public Transform grabPoint;
         public bool isGrabbed = false;
 
+        protected Transform cachedTransform;
+
         private Hand handAttachedTo;
 
         public virtual void GrabObject(Hand hand)
@@ -75,14 +77,26 @@ namespace AperionStudios
 
                     if (grabPoint == null)
                     {
-                        Debug.LogError("grabPoint Transform not defined");
+                        Debug.LogError("grabPoint Transform on " + gameObject.name + " not defined");
                         break;
                     }
                     else
                     {
-                        transform.parent = hand.grabAttachPoint.transform;
-                        transform.position = grabPoint.position;
-                        transform.rotation = grabPoint.rotation;
+                        
+                        //transform.position = grabPoint.position;
+                        //transform.rotation = grabPoint.rotation;
+
+                        //transform.parent = hand.grabAttachPoint;
+
+                        cachedTransform.SetParent(hand.grabAttachPoint);
+
+                        cachedTransform.rotation = hand.transform.rotation;
+                        cachedTransform.Rotate(grabPoint.rotation.eulerAngles);
+                        cachedTransform.position = hand.grabAttachPoint.position;
+                        cachedTransform.Translate(grabPoint.position, Space.Self);
+
+                        //transform = cachedTransform;
+
                     }                
                     break;
             }
@@ -102,8 +116,7 @@ namespace AperionStudios
             }
 
             if (shouldReturn)
-            {
-                print("returning function");
+            {                
                 return;
             }
 
