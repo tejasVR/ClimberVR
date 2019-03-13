@@ -30,16 +30,16 @@ namespace AperionStudios
           
         }
 
-        public override void GrabObject(Hand hand)
+        public override void ObjectUsed(Hand hand)
         {
-            base.GrabObject(hand);
+            base.ObjectUsed(hand);
 
             PickUp();
         }
 
-        public override void UngrabObject(Hand hand)
+        public override void ObjectUnused(Hand hand)
         {
-            base.UngrabObject(hand);
+            base.ObjectUnused(hand);
 
             Throw(hand);            
         }

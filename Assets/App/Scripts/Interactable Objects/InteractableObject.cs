@@ -14,15 +14,27 @@ namespace AperionStudios
 
         public InteractAction HandEnterCallback;
         public InteractAction HandExitCallback;
-    
-        protected virtual void OnHandEnterCallback()
+        public InteractAction ObjectUsedCallback;
+        public InteractAction ObjectUnusedCallback;
+
+        protected virtual void OnHandEnter()
         {
             HandEnterCallback?.Invoke();
         }
 
-        protected virtual void OnHandExitCallback()
+        protected virtual void OnHandExit()
         {
             HandExitCallback?.Invoke();
+        }
+
+        protected virtual void OnObjectUsed()
+        {
+            ObjectUnusedCallback?.Invoke();
+        }
+
+        protected virtual void OnObjectUnused()
+        {
+            ObjectUnusedCallback?.Invoke();
         }
        
         #endregion
@@ -42,14 +54,24 @@ namespace AperionStudios
 
         public virtual void HandEnterObject(Hand hand)
         {
-            OnHandEnterCallback();
+            OnHandEnter();
         }
 
         public virtual void HandExitObject(Hand hand)
         {
-            OnHandExitCallback();
+            OnHandExit();
         }
-     
+
+        public virtual void ObjectUsed(Hand hand)
+        {
+            OnObjectUnused();
+        }
+
+        public virtual void ObjectUnused(Hand hand)
+        {
+            OnObjectUnused();
+        }
+
         public void AdjustPhysics(bool isK, bool useG)
         {
             rb.isKinematic = isK;

@@ -9,20 +9,20 @@ namespace AperionStudios
     {
         #region EVENT SETUP
 
-        public delegate void GrabAction();
+        //public delegate void GrabAction();
 
-        public event GrabAction GrabbedCallback;
-        public event GrabAction UngrabbedCallback;
+        //public event GrabAction GrabbedCallback;
+        //public event GrabAction UngrabbedCallback;
 
-        protected virtual void OnGrabbedCallback()
-        {
-            GrabbedCallback?.Invoke();
-        }
+        //protected virtual void OnGrabbedCallback()
+        //{
+        //    GrabbedCallback?.Invoke();
+        //}
 
-        protected virtual void OnUngrabbedCallback()
-        {
-            UngrabbedCallback?.Invoke();
-        }
+        //protected virtual void OnUngrabbedCallback()
+        //{
+        //    UngrabbedCallback?.Invoke();
+        //}
 
         #endregion
 
@@ -48,19 +48,18 @@ namespace AperionStudios
 
         private Hand handAttachedTo;
 
-        public virtual void GrabObject(Hand hand)
+        public override void ObjectUsed(Hand hand)
         {
-            OnGrabbedCallback();
+            base.ObjectUsed(hand);
 
             AttachToHand(hand);
         }
 
-        public virtual void UngrabObject(Hand hand)
+        public override void ObjectUnused(Hand hand)
         {
-            OnUngrabbedCallback();
+            base.ObjectUnused(hand);
 
             DetachFromHand(hand);
-
         }
 
         public void AttachToHand(Hand hand)

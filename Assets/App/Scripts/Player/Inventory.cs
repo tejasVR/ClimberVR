@@ -17,7 +17,7 @@ namespace AperionStudios
             {
                 //if (throwItem.isGrabbed)
                 //{
-                    inventoryItem.SetHoveringOverInvetory(true);
+                    inventoryItem.SetHoveringOverInventory(true);
                     // wait until the grabbed object is ungrabbed
 
                     //if (!throwItem.isGrabbed)
@@ -38,7 +38,7 @@ namespace AperionStudios
             {
                 //if (throwItem.isGrabbed)
                 //{
-                    inventoryItem.SetHoveringOverInvetory(false);
+                    inventoryItem.SetHoveringOverInventory(false);
                     
                     //inventoryItem.SetHoveringOverInvetory(false);
                     //throwItem.AdjustPhysics(true, false);

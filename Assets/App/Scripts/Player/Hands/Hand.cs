@@ -38,10 +38,12 @@ namespace AperionStudios
 
         void Update()
         {
-            if (grabAction.GetStateUp(thisHand) && grabbedObject != null)
-            {             
-                grabbedObject.UngrabObject(this);              
-                DetachObjectFromHand();
+            if (grabAction.GetStateUp(thisHand))
+            {
+                grabbedObject.ObjectUnused(this);
+                
+                if (grabbedObject != null)
+                    DetachObjectFromHand();
             }
         }
 
@@ -58,19 +60,21 @@ namespace AperionStudios
 
         private void OnTriggerStay(Collider other)
         {
-            //print("Hovering over something");
+            //Debug.Log("Hovering over something");
 
-            Grabbable gO = other.GetComponent<Grabbable>();
+            InteractableObject iO = other.GetComponent<InteractableObject>();
 
-            if (gO != null)
+            if (iO != null)
             {
                 if (grabAction.GetStateDown(thisHand) && grabbedObject == null)
-                {
-                    grabbedObject = gO;
-                    gO.GrabObject(this);
+                {                    
+                    iO.ObjectUsed(this);
+
+                    if (iO.gameObject.GetComponent<Grabbable>())
+                        grabbedObject = iO.gameObject.GetComponent<Grabbable>();
                 }
 
-                //print("Hovering over throwable object");
+                //Debug.Log("Hovering over throwable object");
             }
         }
 

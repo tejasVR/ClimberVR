@@ -18,14 +18,14 @@ namespace AperionStudios
 
         private void OnEnable()
         {
-            grabbable.GrabbedCallback += Grabbed;
-            grabbable.UngrabbedCallback += Ungrabbed;
+            grabbable.ObjectUsedCallback += Grabbed;
+            grabbable.ObjectUnusedCallback += Ungrabbed;
         }
 
         private void OnDestroy()
         {
-            grabbable.GrabbedCallback -= Grabbed;
-            grabbable.UngrabbedCallback -= Ungrabbed;
+            grabbable.ObjectUsedCallback -= Grabbed;
+            grabbable.ObjectUnusedCallback -= Ungrabbed;
         }
 
         void Start()
@@ -56,7 +56,7 @@ namespace AperionStudios
             }
         }
 
-        public void SetHoveringOverInvetory(bool boo)
+        public void SetHoveringOverInventory(bool boo)
         {
             hoveringOverInventory = boo;
         }

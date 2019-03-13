@@ -15,8 +15,8 @@ namespace AperionStudios
 
         private void Update()
         {
-            //transform.localPosition = new Vector3(body.localPosition.x, body.localPosition.y + transform.localPosition.y, body.localPosition.z);
             transform.localPosition = body.localPosition;
+            transform.localRotation = body.localRotation;
         }
     }
 }
