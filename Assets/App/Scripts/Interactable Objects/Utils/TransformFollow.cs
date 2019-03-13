@@ -14,11 +14,14 @@ namespace AperionStudios
 
         void Update()
         {
-            if (shouldMove)
-                transform.position = Vector3.Lerp(transform.position, followTransform.position, Time.deltaTime * 12F);
+            if (followTransform != null)
+            {
+                if (shouldMove)
+                    transform.position = Vector3.Lerp(transform.position, followTransform.position, Time.deltaTime * 15F);
 
-            if (shouldRotate)
-                transform.rotation = Quaternion.Slerp(transform.rotation, followTransform.rotation, Time.deltaTime * 12F);
+                if (shouldRotate)
+                    transform.rotation = Quaternion.Slerp(transform.rotation, followTransform.rotation, Time.deltaTime * 15F);
+            }           
         }
 
         public static Vector3 FollowPosition(Transform currentTransform, Transform transformToFollow, float moveSpeed)
@@ -29,6 +32,11 @@ namespace AperionStudios
         public static Quaternion FollowRotation(Quaternion currentRotation, Quaternion rotationToFollow, float rotateSpeed)
         {
             return Quaternion.Slerp(currentRotation, rotationToFollow, Time.deltaTime * rotateSpeed);
+        }
+
+        public void SetTransformFollow(Transform transformToFollow)
+        {
+            followTransform = transformToFollow;
         }
     }
 }

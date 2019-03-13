@@ -16,17 +16,17 @@ namespace AperionStudios
             grabbable = GetComponent<Grabbable>();
         }
 
-        private void OnEnable()
-        {
-            grabbable.ObjectUsedCallback += Grabbed;
-            grabbable.ObjectUnusedCallback += Ungrabbed;
-        }
+        //private void OnEnable()
+        //{
+        //    grabbable.ObjectUsedCallback += Grabbed;
+        //    grabbable.ObjectUnusedCallback += Ungrabbed;
+        //}
 
-        private void OnDestroy()
-        {
-            grabbable.ObjectUsedCallback -= Grabbed;
-            grabbable.ObjectUnusedCallback -= Ungrabbed;
-        }
+        //private void OnDestroy()
+        //{
+        //    grabbable.ObjectUsedCallback -= Grabbed;
+        //    grabbable.ObjectUnusedCallback -= Ungrabbed;
+        //}
 
         void Start()
         {

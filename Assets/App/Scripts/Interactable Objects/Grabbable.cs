@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace AperionStudios
 {
+    [RequireComponent(typeof(InteractableObject))]
     public class Grabbable : InteractableObject
     {
         #region EVENT SETUP
@@ -47,6 +48,17 @@ namespace AperionStudios
         protected Transform cachedTransform;
 
         private Hand handAttachedTo;
+        private InteractableObject interactableObject;
+
+        public override void Awake()
+        {
+            interactableObject = GetComponent<InteractableObject>();
+        }
+
+        private void OnEnable()
+        {
+            interactableObject.ObjectUsedCallback += ObjectUsed;
+        }
 
         public override void ObjectUsed(Hand hand)
         {
@@ -143,6 +155,12 @@ namespace AperionStudios
             {
                 handAttachedTo.DetachObjectFromHand();
             }
+        }
+
+        public void AdjustPhysics(bool isK, bool useG)
+        {
+            rb.isKinematic = isK;
+            rb.useGravity = useG;
         }
     }
 }

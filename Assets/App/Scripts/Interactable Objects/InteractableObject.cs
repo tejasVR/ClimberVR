@@ -10,31 +10,31 @@ namespace AperionStudios
     {
         #region EVENT SETUP
 
-        public delegate void InteractAction();
+        public delegate void InteractAction(Hand hand);
 
         public InteractAction HandEnterCallback;
         public InteractAction HandExitCallback;
         public InteractAction ObjectUsedCallback;
         public InteractAction ObjectUnusedCallback;
 
-        protected virtual void OnHandEnter()
+        protected virtual void OnHandEnter(Hand hand)
         {
-            HandEnterCallback?.Invoke();
+            HandEnterCallback?.Invoke(hand);
         }
 
-        protected virtual void OnHandExit()
+        protected virtual void OnHandExit(Hand hand)
         {
-            HandExitCallback?.Invoke();
+            HandExitCallback?.Invoke(hand);
         }
 
-        protected virtual void OnObjectUsed()
+        protected virtual void OnObjectUsed(Hand hand)
         {
-            ObjectUnusedCallback?.Invoke();
+            ObjectUsedCallback?.Invoke(hand);
         }
 
-        protected virtual void OnObjectUnused()
+        protected virtual void OnObjectUnused(Hand hand)
         {
-            ObjectUnusedCallback?.Invoke();
+            ObjectUnusedCallback?.Invoke(hand);
         }
        
         #endregion
@@ -54,28 +54,22 @@ namespace AperionStudios
 
         public virtual void HandEnterObject(Hand hand)
         {
-            OnHandEnter();
+            OnHandEnter(hand);
         }
 
         public virtual void HandExitObject(Hand hand)
         {
-            OnHandExit();
+            OnHandExit(hand);
         }
 
         public virtual void ObjectUsed(Hand hand)
         {
-            OnObjectUnused();
+            OnObjectUsed(hand);
         }
 
         public virtual void ObjectUnused(Hand hand)
         {
-            OnObjectUnused();
-        }
-
-        public void AdjustPhysics(bool isK, bool useG)
-        {
-            rb.isKinematic = isK;
-            rb.useGravity = useG;
+            OnObjectUnused(hand);
         }
     }
 }
