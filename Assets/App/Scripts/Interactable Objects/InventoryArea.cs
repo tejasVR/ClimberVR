@@ -7,7 +7,7 @@ namespace AperionStudios
     [RequireComponent(typeof(InteractableObject))]
     public class InventoryArea : MonoBehaviour
     {
-        public GameObject objToAcivate;
+        public Grabbable objToAcivate;
 
         private InteractableObject interactableObject;
 
@@ -19,6 +19,7 @@ namespace AperionStudios
         private void Start()
         {
             DeactivateObject();
+
         }
 
         private void OnEnable()
@@ -38,21 +39,25 @@ namespace AperionStudios
 
         IEnumerator ToggleObject(Hand handToFollow)
         {
-            if (objToAcivate.activeInHierarchy)
+            if (objToAcivate.gameObject.activeInHierarchy)
             {
-                objToAcivate.transform.parent = transform;
+                objToAcivate.AttachToHand(handToFollow);
+                handToFollow.AttachObjectToHand(objToAcivate);
 
                 yield return new WaitForEndOfFrame();
 
-                objToAcivate.SetActive(false);             
+                objToAcivate.gameObject.SetActive(false);             
             }
             else
             {
-                objToAcivate.transform.parent = null;
+                objToAcivate.transform.parent = transform;
+
+                objToAcivate.
+                handToFollow.DetachObjectFromHand();
 
                 yield return new WaitForEndOfFrame();
 
-                objToAcivate.SetActive(true);
+                objToAcivate.gameObject.SetActive(true);
             }
 
             if (objToAcivate.GetComponent<TransformFollow>())
@@ -62,13 +67,13 @@ namespace AperionStudios
         private void ActiveObject()
         {
             objToAcivate.transform.parent = null;
-            objToAcivate.SetActive(true);
+            objToAcivate.gameObject.SetActive(true);
         }
 
         private void DeactivateObject()
         {
             objToAcivate.transform.parent = transform;
-            objToAcivate.SetActive(false);
+            objToAcivate.gameObject.SetActive(false);
         }
     }
 }

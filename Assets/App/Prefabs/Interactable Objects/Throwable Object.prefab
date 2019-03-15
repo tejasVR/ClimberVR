@@ -169,8 +169,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   secondHandInteraction: 1
   grabType: 0
+  transformParent: 0
   grabPoint: {fileID: 0}
-  isGrabbed: 0
   isThrown: 0
   isActive: 1
   velocityMultiplier: 1

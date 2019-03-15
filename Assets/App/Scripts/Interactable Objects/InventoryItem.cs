@@ -38,23 +38,23 @@ namespace AperionStudios
 
         }
 
-        private void Grabbed()
-        {
-            if (hoveringOverInventory)
-            {
-                //interactableObject.isActive = true;
-                grabbable.AdjustPhysics(false, true);
-            }
-        }
+        //private void Grabbed()
+        //{
+        //    if (hoveringOverInventory)
+        //    {
+        //        //interactableObject.isActive = true;
+        //        grabbable.AdjustPhysics(false, true);
+        //    }
+        //}
 
-        private void Ungrabbed()
-        {
-            if (hoveringOverInventory)
-            {
-                //interactableObject.isActive = false;
-                grabbable.AdjustPhysics(true, false);
-            }
-        }
+        //private void Ungrabbed()
+        //{
+        //    if (hoveringOverInventory)
+        //    {
+        //        //interactableObject.isActive = false;
+        //        grabbable.AdjustPhysics(true, false);
+        //    }
+        //}
 
         public void SetHoveringOverInventory(bool boo)
         {

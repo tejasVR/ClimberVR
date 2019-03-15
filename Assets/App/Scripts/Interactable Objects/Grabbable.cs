@@ -39,18 +39,20 @@ namespace AperionStudios
             FixedPoint,            
         }
 
-        public enum TransformParent
+        public enum UngrabType
         {
-            ControllerMapped,
-            TransformFollow
+            Anywhere,
+            Inventory
         }
 
         [Header("Grabbable Settings")]
         public SecondHandInteraction secondHandInteraction;
         public GrabType grabType;
-        public TransformParent transformParent;
+        public UngrabType ungrabType;
 
         public Transform grabPoint;
+
+        public Grabbable objToGrab;
 
         protected Transform cachedTransform;
 
@@ -92,7 +94,7 @@ namespace AperionStudios
             transform.rotation = TransformFollow.FollowRotation(transform, hand.transform, 20F);
         }
 
-        public void AttachToHand(Hand hand)
+        public virtual void AttachToHand(Hand hand)
         {
             bool shouldReturn = false;
 
@@ -161,14 +163,49 @@ namespace AperionStudios
             handAttachedTo.SetInteractingObject(this);
         }
 
-        public void DetachFromHand(Hand hand)
+        protected virtual void DetachFromHand(Hand hand)
         {
-            AdjustPhysics(false, true);
+            if (ShouldDetach())
+            {
+                hand.DetachObjectFromHand();
 
-            transform.parent = null;
-            handAttachedTo = null;
+                AdjustPhysics(false, true);
 
-            isGrabbed = false;
+                transform.parent = null;
+                handAttachedTo = null;
+
+                isGrabbed = false;
+            }            
+        }
+
+        private bool ShouldDetach()
+        {
+            switch (ungrabType)
+            {
+                case UngrabType.Anywhere:
+                    return true;
+                    
+                case UngrabType.Inventory:
+                    return IfNearInventory();
+            }
+
+            return false;
+        }
+
+        private bool IfNearInventory()
+        {
+            RaycastHit hit;
+            LayerMask inventoryLayer = LayerMask.NameToLayer("Inventory");
+           
+            Collider[] cols = Physics.OverlapSphere(transform.position, 1F, ~inventoryLayer, QueryTriggerInteraction.Collide);
+
+            foreach (var c in cols)
+            {
+                if (c != null)
+                    return true;
+            }
+
+            return false;
         }
 
         private void SwitchHands(Hand handToSwitchTo)
@@ -179,7 +216,7 @@ namespace AperionStudios
             }
         }
 
-        public void AdjustPhysics(bool isK, bool useG)
+        protected virtual void AdjustPhysics(bool isK, bool useG)
         {
             rb.isKinematic = isK;
             rb.useGravity = useG;

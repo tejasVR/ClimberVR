@@ -38,11 +38,7 @@ namespace AperionStudios
 
         void Update()
         {
-            //if (grabAction.GetStateUp(thisHand))
-            //{                        
-            //    if (grabbedObject != null)
-            //        DetachObjectFromHand();
-            //}
+            CheckUngrab();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -69,16 +65,25 @@ namespace AperionStudios
                     iO.ObjectUsed(this);
 
                     if (iO.gameObject.GetComponent<Grabbable>() && grabbedObject == null)
+                    {
                         grabbedObject = iO.gameObject.GetComponent<Grabbable>();
+
+                        if (grabbedObject.objToGrab == null)
+                            AttachObjectToHand(grabbedObject);
+                        else
+                            AttachObjectToHand(grabbedObject.objToGrab);
+
+                    }
+                        
                 }
 
-                if (grabAction.GetStateUp(thisHand))
-                {
-                    iO.ObjectUnused(this);
+                //if (grabAction.GetStateUp(thisHand))
+                //{
+                //    iO.ObjectUnused(this);
 
-                    if (grabbedObject != null)
-                        DetachObjectFromHand();
-                }
+                //    if (grabbedObject != null)
+                //        DetachObjectFromHand();
+                //}
 
                 //Debug.Log("Hovering over throwable object");
             }
@@ -88,11 +93,27 @@ namespace AperionStudios
         {
             InteractableObject iO = other.GetComponent<InteractableObject>();
 
-            if (iO != null)
+            if (iO != null && grabbedObject == null)
             {
                 interactingObject = null;
                 iO.HandExitObject(this);
             }
+        }
+
+        private void CheckUngrab()
+        {
+            if (grabAction.GetStateUp(thisHand) && grabbedObject != null)
+            {
+                interactingObject.ObjectUnused(this);
+
+                if (grabbedObject != null)
+                    DetachObjectFromHand();
+            }
+        }
+
+        public void AttachObjectToHand(Grabbable objectToGrab)
+        {
+            grabbedObject = objectToGrab;
         }
 
         public void DetachObjectFromHand()
