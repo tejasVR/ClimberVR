@@ -26,8 +26,7 @@ namespace AperionStudios
 
         public override void Awake()
         {
-            base.Awake();
-          
+            base.Awake();          
         }
 
         public override void ObjectUsed(Hand hand)

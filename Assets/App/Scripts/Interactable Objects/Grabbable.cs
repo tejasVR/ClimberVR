@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace AperionStudios
 {
-    [RequireComponent(typeof(InteractableObject))]
     public class Grabbable : InteractableObject
     {
         #region EVENT SETUP
@@ -36,28 +35,33 @@ namespace AperionStudios
         public enum GrabType
         {
             Free,
+            Follow,
             FixedPoint,            
+        }
+
+        public enum TransformParent
+        {
+            ControllerMapped,
+            TransformFollow
         }
 
         [Header("Grabbable Settings")]
         public SecondHandInteraction secondHandInteraction;
         public GrabType grabType;
+        public TransformParent transformParent;
+
         public Transform grabPoint;
-        public bool isGrabbed = false;
 
         protected Transform cachedTransform;
 
+        private bool isGrabbed = false;
+        private bool isFollowingHand = false;
         private Hand handAttachedTo;
         private InteractableObject interactableObject;
 
         public override void Awake()
         {
-            interactableObject = GetComponent<InteractableObject>();
-        }
-
-        private void OnEnable()
-        {
-            interactableObject.ObjectUsedCallback += ObjectUsed;
+            base.Awake();
         }
 
         public override void ObjectUsed(Hand hand)
@@ -72,6 +76,20 @@ namespace AperionStudios
             base.ObjectUnused(hand);
 
             DetachFromHand(hand);
+        }
+
+        private void Update()
+        {
+            if (isGrabbed & isFollowingHand && handAttachedTo != null)
+            {
+                FollowHand(handAttachedTo);
+            }
+        }
+
+        private void FollowHand(Hand hand)
+        {                  
+            transform.position = TransformFollow.FollowPosition(transform, hand.transform, 20F);
+            transform.rotation = TransformFollow.FollowRotation(transform, hand.transform, 20F);
         }
 
         public void AttachToHand(Hand hand)
@@ -109,6 +127,10 @@ namespace AperionStudios
                         //transform = cachedTransform;
 
                     }                
+                    break;
+
+                case GrabType.Follow:
+                    isFollowingHand = true;
                     break;
             }
 

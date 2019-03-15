@@ -30,7 +30,7 @@ namespace AperionStudios
         private Grabbable grabbedObject; 
         private Rigidbody rb;
 
-        void Start()
+        void Awake()
         {
             rb = GetComponent<Rigidbody>();
             trackedObject = GetComponent<SteamVR_Behaviour_Pose>();
