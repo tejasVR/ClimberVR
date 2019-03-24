@@ -52,7 +52,7 @@ namespace AperionStudios
             {
                 objToAcivate.transform.parent = transform;
 
-                objToAcivate.
+                //objToAcivate.
                 handToFollow.DetachObjectFromHand();
 
                 yield return new WaitForEndOfFrame();
